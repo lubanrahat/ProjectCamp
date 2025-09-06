@@ -1,5 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-import { AvailableTaskStatuses, taskStatusEnum } from "../utils/constants.js";
+import { AvailableTaskStatuses, TaskStatusEnum } from "../utils/constants.js";
 
 const taskSchema = new Schema(
   {
@@ -29,7 +29,7 @@ const taskSchema = new Schema(
     status: {
       type: String,
       enum: AvailableTaskStatuses,
-      default: taskStatusEnum.TODO,
+      default: TaskStatusEnum.TODO,
     },
     attachments: {
       type: [

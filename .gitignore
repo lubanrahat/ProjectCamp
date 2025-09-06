@@ -44,3 +44,5 @@ temp/
 *.sock
 *.out
 *.pid
+
+.prettierignore

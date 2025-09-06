@@ -16,9 +16,10 @@ const subtaskSchema = new Schema({
     default: false,
   },
   createdBy: {
-    type:Schema.Types.ObjectId,
-    required:true
-  }
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
 });
 
 export const SubTask = mongoose.model("SubTask", subtaskSchema);
