@@ -1,0 +1,40 @@
+# Build / dependency directories
+target/
+build/
+out/
+.gradle/
+.mvn/
+!src/main/**
+
+# Dependency lock and wrapper files
+mvnw
+mvnw.cmd
+gradlew
+gradlew.bat
+.gradle/
+.gradle-cache/
+**/generated/
+
+# Node modules (if mixing frontend/backend in same repo)
+node_modules/
+
+# Logs
+*.log
+
+# Environment files
+.env
+.env.*
+application-*.yml
+application-*.properties
+
+# IDE / Editor files
+.idea/
+.vscode/
+*.iml
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Prettier itself
+.prettierignore
