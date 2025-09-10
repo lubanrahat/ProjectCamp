@@ -31,7 +31,7 @@ const userSchema = new Schema(
     },
     fullname: {
       type: String,
-      required: true,
+      trim: true,
     },
     password: {
       type: String,
@@ -61,14 +61,13 @@ const userSchema = new Schema(
 );
 
 userSchema.pre("save", async function (next) {
-  if (!this.isModified(this.password)) next();
-  const salt = await bcrypt.genSalt(10);
-  this.password = await bcrypt.hash(this.password, salt);
+  if (!this.isModified("password")) return next();
+  this.password = await bcrypt.hash(this.password, 10);
   next();
 });
 
-userSchema.methods.comparePassword = async function (enteredPassword) {
-  return await bcrypt.compare(enteredPassword, this.password);
+userSchema.methods.isPasswordCorrect = async function (password) {
+  return await bcrypt.compare(password, this.password);
 };
 
 userSchema.methods.genetatAccessToken = function () {
@@ -102,6 +101,6 @@ userSchema.methods.genetateTemporaryToken = function () {
   return { hashedToken, unHashedToken, tokenExpire };
 };
 
-export const User = mongoose.model("User", userSchema);
+const User = mongoose.model("User", userSchema);
 
-
+export default User;
