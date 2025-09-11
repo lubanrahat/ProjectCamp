@@ -288,7 +288,9 @@ const forgotPasswordRequest = asyncHandler(async (req, res) => {
     subject: "Password reset request",
     mailgenContent: forgotPasswordMailgenContent(
       user.username,
-      `${process.env.FORGOT_PASSWORD_REDIRECT_URL}/${unHashedToken}`,
+      `${req.protocol}://${req.get(
+        "host",
+      )}/api/v1/auth/reset-password/${unHashedToken}`,
     ),
   });
 
@@ -343,5 +345,4 @@ export {
   refreshAccessToken,
   forgotPasswordRequest,
   resetForgottenPassword,
-  handleForgotPasswordLink,
 };
