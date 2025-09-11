@@ -8,12 +8,15 @@ import {
   refreshAccessToken,
   forgotPasswordRequest,
   resetForgottenPassword,
+  getCurrentUser,
+  changeCurrentPassword,
 } from "../controllers/auth.controllers.js";
 import {
   userRegisterValidator,
   userLoginValidator,
   userForgotPasswordValidator,
   userResetForgottenPasswordValidator,
+  userChangeCurrentPasswordValidator,
 } from "../validators/index.js";
 import { validate } from "../middlewares/validator.middlewares.js";
 import { verifyJWT } from "../middlewares/auth.middlewares.js";
@@ -55,5 +58,16 @@ router.route("/logout").get(verifyJWT, logoutUser);
 router
   .route("/resend-email-verification")
   .post(verifyJWT, resendEmailVerification);
+
+router.route("/current-user").get(verifyJWT, getCurrentUser);
+
+router
+  .route("/change-password")
+  .post(
+    verifyJWT,
+    userChangeCurrentPasswordValidator,
+    validate,
+    changeCurrentPassword,
+  );
 
 export default router;
