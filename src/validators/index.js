@@ -53,10 +53,15 @@ const userChangeCurrentPasswordValidator = () => {
   ];
 };
 
+const notesValidator = () => {
+  return [body("content").notEmpty().withMessage("Content is required")];
+};
+
 export {
   userRegisterValidator,
   userLoginValidator,
   userForgotPasswordValidator,
   userResetForgottenPasswordValidator,
   userChangeCurrentPasswordValidator,
+  notesValidator,
 };

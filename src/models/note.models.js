@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 
-const noteSchema = new Schema(
+const projectNoteSchema = new Schema(
   {
     project: {
       type: Schema.Types.ObjectId,
@@ -20,4 +20,6 @@ const noteSchema = new Schema(
   { timestamps: true },
 );
 
-export const Note = mongoose.model("Note", noteSchema);
+const ProjectNote = mongoose.model("ProjectNote", projectNoteSchema);
+
+export default ProjectNote;
